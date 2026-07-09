@@ -1,0 +1,26 @@
+[
+  {
+    "budgetYear": "2025-26",
+    "isActive": false,
+    "taxSlabs": [
+      { "min": 0, "max": 600000, "fixedTax": 0, "percentage": 0 },
+      { "min": 600001, "max": 1200000, "fixedTax": 0, "percentage": 0.025 },
+      { "min": 1200001, "max": 2200000, "fixedTax": 15000, "percentage": 0.125 },
+      { "min": 2200001, "max": 3200000, "fixedTax": 140000, "percentage": 0.225 },
+      { "min": 3200001, "max": 4100000, "fixedTax": 365000, "percentage": 0.275 },
+      { "min": 4100001, "max": 0, "fixedTax": 612500, "percentage": 0.35 }
+    ]
+  },
+  {
+    "budgetYear": "2026-27",
+    "isActive": true,
+    "taxSlabs": [
+      { "min": 0, "max": 600000, "fixedTax": 0, "percentage": 0 },
+      { "min": 600001, "max": 1200000, "fixedTax": 0, "percentage": 0.01 },
+      { "min": 1200001, "max": 2200000, "fixedTax": 6000, "percentage": 0.11 },
+      { "min": 2200001, "max": 3200000, "fixedTax": 116000, "percentage": 0.20 },
+      { "min": 3200001, "max": 4100000, "fixedTax": 316000, "percentage": 0.30 },
+      { "min": 4100001, "max": 0, "fixedTax": 586000, "percentage": 0.35 }
+    ]
+  }
+]
