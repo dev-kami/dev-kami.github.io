@@ -1,68 +1,77 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.7">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000; min-height: 14.0px}
-    span.s1 {font-kerning: none}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BankIslami App Redirect</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+        h2 {
+            color: #004d40;
+        }
+        p {
+            color: #666;
+        }
+    </style>
 </head>
 <body>
-<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
-<p class="p1"><span class="s1">&lt;html lang="en"&gt;</span></p>
-<p class="p1"><span class="s1">&lt;head&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;title&gt;BankIslami Link Redirect&lt;/title&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
-<p class="p1"><span class="s1">&lt;body&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Opening BankIslami App...&lt;/h2&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;p&gt;If you are not redirected automatically, please check your app status.&lt;/p&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;script&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>window.onload = function() {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>var userAgent = navigator.userAgent || navigator.vendor || window.opera;</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>var packageName = "com.wallet.bankislami";</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>var playStoreUrl = "https://play.google.com/store/apps/details?id=" + packageName;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>var iosAppStoreUrl = "https://apps.apple.com/app/idYOUR_APPLE_APP_ID"; // Yahan apni Apple App ID dal dein</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>var websiteUrl = "https://aikdigital.com";</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// 1. Android Detection</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (/android/i.test(userAgent)) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>// Intent approach to open app or fallback to Play Store</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>var iframe = document.createElement("iframe");</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>iframe.style.display = "none";</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>iframe.src = "intent://open#Intent;scheme=bankislami;package=" + packageName + ";end;";</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>document.body.appendChild(iframe);</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>setTimeout(function() {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>window.location.href = playStoreUrl;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}, 1200);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// 2. iOS Detection</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>else if (/iPad|iPhone|iPod/.test(userAgent) &amp;&amp; !window.MSStream) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>var customScheme = "bankislami://";</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>window.location.href = customScheme;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>setTimeout(function() {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>window.location.href = iosAppStoreUrl;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>}, 1500);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>// 3. Desktop / Web Detection</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>else {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>window.location.href = websiteUrl;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>};</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+
+    <div class="container">
+        <h2>Opening BankIslami App...</h2>
+        <p>If you are not redirected automatically, please choose an option below or check your app status.</p>
+    </div>
+
+    <script>
+        window.onload = function() {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            
+            var packageName = "com.wallet.bankislami";
+            var playStoreUrl = "https://play.google.com/store/apps/details?id=" + packageName;
+            var iosAppStoreUrl = "https://apps.apple.com/app/idYOUR_APPLE_APP_ID"; // Yahan apni Apple App ID ya link update kar dein
+            var websiteUrl = "https://aikdigital.com";
+
+            // 1. Android Detection
+            if (/android/i.test(userAgent)) {
+                // Intent approach to open app, fallback to Play Store
+                var iframe = document.createElement("iframe");
+                iframe.style.display = "none";
+                iframe.src = "intent://open#Intent;scheme=bankislami;package=" + packageName + ";end;";
+                document.body.appendChild(iframe);
+
+                setTimeout(function() {
+                    window.location.href = playStoreUrl;
+                }, 1200);
+            }
+            
+            // 2. iOS Detection (iPhone / iPad / iPod)
+            else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                var customScheme = "bankislami://";
+                window.location.href = customScheme;
+
+                setTimeout(function() {
+                    window.location.href = iosAppStoreUrl;
+                }, 1500);
+            }
+            
+            // 3. Desktop / Web Detection (Windows, Mac, Linux)
+            else {
+                window.location.href = websiteUrl;
+            }
+        };
+    </script>
+
 </body>
 </html>
