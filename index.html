@@ -8,7 +8,7 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            padding: 50px;
+            padding: 50px 20px;
             background-color: #f4f4f9;
             color: #333;
         }
@@ -18,6 +18,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             display: inline-block;
+            max-width: 400px;
         }
         h2 {
             color: #004d40;
@@ -25,60 +26,100 @@
         p {
             color: #666;
         }
+        .btn {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 12px 24px;
+            background-color: #004d40;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+        .fallback-links {
+            margin-top: 20px;
+        }
+        .fallback-links a {
+            display: block;
+            margin-top: 10px;
+            color: #004d40;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .fallback-links a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
         <h2>Opening BankIslami App...</h2>
-        <p>If you are not redirected automatically, please choose an option below or check your app status.</p>
+        <p>If you are not redirected automatically, tap the button below.</p>
+        <a id="openAppBtn" class="btn" href="#">Open App</a>
+        
+        <div class="fallback-links">
+            <a href="https://apps.apple.com/pk/app/aik/id6740029815">Download on the App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.wallet.bankislami">Get it on Google Play</a>
+        </div>
     </div>
 
     <script>
-        window.onload = function() {
+        (function () {
             var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-            
+
             var packageName = "com.wallet.bankislami";
+            var customSchemeUrl = "bankislami://open";
             var playStoreUrl = "https://play.google.com/store/apps/details?id=" + packageName;
-            var iosAppStoreUrl = "https://apps.apple.com/pk/app/aik/id6740029815"; // Yahan apni Apple App ID ya link update kar dein
+            var iosAppStoreUrl = "https://apps.apple.com/pk/app/aik/id6740029815";
             var websiteUrl = "https://aikdigital.com";
 
-            // 1. Android Detection
-            if (/android/i.test(userAgent)) {
-                // Intent approach to open app, fallback to Play Store
-                var iframe = document.createElement("iframe");
-                iframe.style.display = "none";
-                iframe.src = "intent://open#Intent;scheme=bankislami;package=" + packageName + ";end;";
-                document.body.appendChild(iframe);
+            // Android Intent URI with built-in browser_fallback_url
+            var androidIntentUrl =
+                "intent://open#Intent;scheme=bankislami;package=" + packageName +
+                ";S.browser_fallback_url=" + encodeURIComponent(playStoreUrl) +
+                ";end";
 
-                setTimeout(function() {
-                    window.location.href = playStoreUrl;
-                }, 1200);
+            var openAppBtn = document.getElementById("openAppBtn");
+
+            function redirect() {
+                // 1. Android Detection
+                if (/android/i.test(userAgent)) {
+                    openAppBtn.href = androidIntentUrl;
+                    // Top-level navigation: opens app if installed, or falls back to Play Store automatically
+                    window.location.href = androidIntentUrl;
+                }
+                // 2. iOS Detection (iPhone / iPad / iPod)
+                else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                    openAppBtn.href = customSchemeUrl;
+                    var redirected = false;
+                    var markLeft = function () { redirected = true; };
+
+                    window.addEventListener("pagehide", markLeft);
+                    window.addEventListener("blur", markLeft);
+                    document.addEventListener("visibilitychange", function () {
+                        if (document.hidden) redirected = true;
+                    });
+
+                    // Attempt to open iOS custom scheme / Universal Link
+                    window.location.href = customSchemeUrl;
+
+                    // Fallback to App Store only if the user stayed on the page
+                    setTimeout(function () {
+                        if (!redirected && !document.hidden) {
+                            window.location.href = iosAppStoreUrl;
+                        }
+                    }, 1500);
+                }
+                // 3. Desktop / Web Detection
+                else {
+                    openAppBtn.href = websiteUrl;
+                    window.location.href = websiteUrl;
+                }
             }
-            
-            // 2. iOS Detection (iPhone / iPad / iPod)
-            else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-    var redirected = false;
-    var markLeft = function () { redirected = true; };
- 
-    window.addEventListener('pagehide', markLeft);
-    window.addEventListener('blur', markLeft);
-    document.addEventListener('visibilitychange', function () {
-        if (document.hidden) redirected = true;
-    });
- 
-    setTimeout(function () {
-        if (!redirected) {
-            window.location.href = iosAppStoreUrl;
-        }
-    }, 1500);
-}
-            
-            // 3. Desktop / Web Detection (Windows, Mac, Linux)
-            else {
-                window.location.href = websiteUrl;
-            }
-        };
+
+            window.onload = redirect;
+        })();
     </script>
 
 </body>
