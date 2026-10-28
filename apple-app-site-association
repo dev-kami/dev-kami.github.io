@@ -1,0 +1,17 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": [
+          "573VF9FKGC.com.wallet.bankislami"
+        ],
+        "paths": [
+          "*",
+          "/hostingRepo",
+          "/hostingRepo/*"
+        ]
+      }
+    ]
+  }
+}
