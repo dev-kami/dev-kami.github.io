@@ -57,14 +57,7 @@
             }
             
             // 2. iOS Detection (iPhone / iPad / iPod)
-            else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                var customScheme = "bankislami://";
-                window.location.href = customScheme;
-
-                setTimeout(function() {
-                    window.location.href = iosAppStoreUrl;
-                }, 1500);
-            }
+           
             
             // 3. Desktop / Web Detection (Windows, Mac, Linux)
             else {
