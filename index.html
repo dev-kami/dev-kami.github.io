@@ -36,14 +36,32 @@
             border-radius: 6px;
             font-weight: bold;
         }
+        .fallback-links {
+            margin-top: 20px;
+        }
+        .fallback-links a {
+            display: block;
+            margin-top: 10px;
+            color: #004d40;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .fallback-links a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h2>Opening Aik Digital App...</h2>
+        <h2>Opening BankIslami App...</h2>
         <p>If you are not redirected automatically, tap the button below.</p>
         <a id="openAppBtn" class="btn" href="#">Open App</a>
+        
+        <div class="fallback-links">
+            <a href="https://apps.apple.com/pk/app/aik/id6740029815">Download on the App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.wallet.bankislami">Get it on Google Play</a>
+        </div>
     </div>
 
     <script>
@@ -56,7 +74,7 @@
             var iosAppStoreUrl = "https://apps.apple.com/pk/app/aik/id6740029815";
             var websiteUrl = "https://aikdigital.com";
 
-            // Top-level Android Intent URI with built-in browser_fallback_url
+            // Android Intent URI with built-in browser_fallback_url
             var androidIntentUrl =
                 "intent://open#Intent;scheme=bankislami;package=" + packageName +
                 ";S.browser_fallback_url=" + encodeURIComponent(playStoreUrl) +
@@ -68,8 +86,7 @@
                 // 1. Android Detection
                 if (/android/i.test(userAgent)) {
                     openAppBtn.href = androidIntentUrl;
-                    // Use top-level navigation (NOT iframe). Chrome opens the app if installed,
-                    // or automatically falls back to S.browser_fallback_url (Play Store) if not.
+                    // Top-level navigation: opens app if installed, or falls back to Play Store automatically
                     window.location.href = androidIntentUrl;
                 }
                 // 2. iOS Detection (iPhone / iPad / iPod)
@@ -84,7 +101,7 @@
                         if (document.hidden) redirected = true;
                     });
 
-                    // Attempt to open iOS custom scheme first
+                    // Attempt to open iOS custom scheme / Universal Link
                     window.location.href = customSchemeUrl;
 
                     // Fallback to App Store only if the user stayed on the page
