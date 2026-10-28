@@ -7,9 +7,7 @@
           "573VF9FKGC.com.wallet.bankislami"
         ],
         "paths": [
-          "*",
-          "/hostingRepo",
-          "/hostingRepo/*"
+          "*"
         ]
       }
     ]
